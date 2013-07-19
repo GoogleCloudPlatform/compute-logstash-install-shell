@@ -61,8 +61,8 @@ gem install fpm
 print_action "Creating Logstash package"
 LOGSTASH_TMP_DIR=`mktemp -d logstash.XXXXXX`
 git clone https://github.com/rdcastro/logstash-packaging.git $LOGSTASH_TMP_DIR/logstash --depth=1
-$( cd "$LOGSTASH_TMP_DIR" && ./logstash/package-common.sh )
-$( cd "$LOGSTASH_TMP_DIR" && ./logstash/package-shipper.sh )
+( cd "$LOGSTASH_TMP_DIR" && ./logstash/package-common.sh -f )
+( cd "$LOGSTASH_TMP_DIR" && ./logstash/package-shipper.sh -f )
 
 print_action "Installing Logstash package"
 sudo dpkg -i $LOGSTASH_TMP_DIR/logstash-common_${LOGSTASH_VERSION}_all.deb
