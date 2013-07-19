@@ -1,4 +1,4 @@
-#!/bin/sh                                                                                                                                                   
+#!/bin/bash                                                                                                                                                   
 
 LOGSTASH_VERSION=1.1.13
 
