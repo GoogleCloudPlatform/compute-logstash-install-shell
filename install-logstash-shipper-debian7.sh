@@ -1,5 +1,4 @@
-#!/bin/bash                                                                                                                                                   
-
+#!/bin/bash
 LOGSTASH_VERSION=1.1.13
 
 RESTORE='\033[0m'
@@ -43,7 +42,7 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-trap 'handle_error $LINENO $?' ERR 
+trap 'handle_error $LINENO $?' ERR
 
 print_title "Installing Logstash shipper"
 
