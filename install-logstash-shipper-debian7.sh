@@ -10,24 +10,30 @@ BOLD=`tput bold`
 NORMAL=`tput sgr0`
 
 handle_error() {
-    echo "FAILED: line $1, exit code $2"
-    cleanup
-    exit 1
+  echo "FAILED: line $1, exit code $2"
+  cleanup
+  exit 1
+}
+
+handle_ctrl_c() {
+  echo "Installation INTERRUPTED!"
+  cleanup
+  exit 1
 }
 
 print_title()
 {
-echo -e "${BLUE}${BOLD}$1${RESTORE}${NORMAL}"
+  echo -e "${BLUE}${BOLD}$1${RESTORE}${NORMAL}"
 }
 
 print_action()
 {
-echo -e "${RED}${BOLD}$1${RESTORE}${NORMAL}"
+  echo -e "${RED}${BOLD}$1${RESTORE}${NORMAL}"
 }
 
 print_success()
 {
-echo -e "${GREEN}${BOLD}$1${RESTORE}${NORMAL}"
+  echo -e "${GREEN}${BOLD}$1${RESTORE}${NORMAL}"
 }
 
 cleanup()
@@ -56,6 +62,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 trap 'handle_error $LINENO $?' ERR
+trap 'handle_ctrl_c' INT
 
 print_title "Installing Logstash shipper"
 
