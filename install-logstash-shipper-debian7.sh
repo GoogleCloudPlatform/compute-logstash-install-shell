@@ -4,6 +4,7 @@ LOGSTASH_VERSION=1.1.13
 RESTORE='\033[0m'
 RED='\033[00;31m'
 BLUE='\033[00;34m'
+GREEN='\033[00;32m'
 
 BOLD=`tput bold`
 NORMAL=`tput sgr0`
@@ -22,6 +23,11 @@ echo -e "${BLUE}${BOLD}$1${RESTORE}${NORMAL}"
 print_action()
 {
 echo -e "${RED}${BOLD}$1${RESTORE}${NORMAL}"
+}
+
+print_success()
+{
+echo -e "${GREEN}${BOLD}$1${RESTORE}${NORMAL}"
 }
 
 cleanup()
@@ -81,3 +87,5 @@ print_action "Restarting Logstash"
 service logstash restart
 
 cleanup
+
+print_success "Logstash shipper installed successfully"
