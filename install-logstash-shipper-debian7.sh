@@ -10,6 +10,7 @@ NORMAL=`tput sgr0`
 
 handle_error() {
     echo "FAILED: line $1, exit code $2"
+    cleanup
     exit 1
 }
 
@@ -21,6 +22,12 @@ echo -e "${BLUE}${BOLD}$1${RESTORE}${NORMAL}"
 print_action()
 {
 echo -e "${RED}${BOLD}$1${RESTORE}${NORMAL}"
+}
+
+cleanup()
+{
+  print_action "Cleaning up"
+  rm -rf $LOGSTASH_TMP_DIR
 }
 
 usage()
@@ -73,6 +80,4 @@ sed -i "s/127.0.0.1/$1/" /etc/logstash/syslog-shipper.conf
 print_action "Restarting Logstash"
 service logstash restart
 
-print_action "Cleaning up"
-rm -rf $LOGSTASH_TMP_DIR
-
+cleanup
