@@ -38,7 +38,6 @@ If provisioning a Log shipper:
 
 * See [CONTRIB.md](CONTRIB.md)
 
-
 ## Licensing
 
 * See [LICENSE](LICENSE)
