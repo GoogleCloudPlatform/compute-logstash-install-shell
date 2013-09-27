@@ -12,7 +12,7 @@ Author: Rodrigo De Castro <rdc@google.com>
 
 2. sudo apt-get -y install git
 
-   Install git
+   This command installs git.
 
 3. git clone https://github.com/GoogleCloudPlatform/compute-logstash-install-shell.git
 
