@@ -91,6 +91,9 @@ wget http://blog.calhariz.com/public/sft/kibana/kibana_0.2.0_35_g40f2512_6-2_all
 sudo dpkg -i $KIBANA_TMP_DIR/kibana.deb
 sudo sed -i "s/KibanaHost = '127.0.0.1'/KibanaHost = '0.0.0.0'/" /etc/kibana/KibanaConfig.rb
 
+print_action "Restarting Kibana"
+sudo service kibana restart
+
 print_action "Installing and Configuring Redis"
 sudo apt-get install -y redis-server
 sudo sed -i "s/bind 127.0.0.1/bind 0.0.0.0/" /etc/redis/redis.conf
