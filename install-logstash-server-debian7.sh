@@ -73,7 +73,7 @@ gem install fpm
 
 print_action "Creating Logstash package"
 LOGSTASH_TMP_DIR=`mktemp -d logstash.XXXXXX`
-git clone https://github.com/rdcastro/logstash-packaging.git $LOGSTASH_TMP_DIR/logstash --depth=1
+git clone https://github.com/GoogleCloudPlatform/compute-logstash-packaging-shell.git $LOGSTASH_TMP_DIR/logstash --depth=1
 ( cd "$LOGSTASH_TMP_DIR" && ./logstash/package-common.sh -f )
 ( cd "$LOGSTASH_TMP_DIR" && ./logstash/package-server.sh -f )
 
