@@ -73,7 +73,7 @@ gem install fpm
 
 print_action "Creating Logstash package"
 LOGSTASH_TMP_DIR=`mktemp -d logstash.XXXXXX`
-git clone https://github.com/rdcastro/logstash-packaging.git $LOGSTASH_TMP_DIR/logstash --depth=1
+git clone https://github.com/GoogleCloudPlatform/compute-logstash-packaging-shell.git $LOGSTASH_TMP_DIR/logstash --depth=1
 ( cd "$LOGSTASH_TMP_DIR" && ./logstash/package-common.sh -f )
 ( cd "$LOGSTASH_TMP_DIR" && ./logstash/package-server.sh -f )
 
@@ -90,6 +90,9 @@ sudo apt-get -y install ruby-tzinfo ruby-daemons ruby-sinatra libjs-jquery ruby-
 wget http://blog.calhariz.com/public/sft/kibana/kibana_0.2.0_35_g40f2512_6-2_all.deb -O $KIBANA_TMP_DIR/kibana.deb
 sudo dpkg -i $KIBANA_TMP_DIR/kibana.deb
 sudo sed -i "s/KibanaHost = '127.0.0.1'/KibanaHost = '0.0.0.0'/" /etc/kibana/KibanaConfig.rb
+
+print_action "Restarting Kibana"
+sudo service kibana restart
 
 print_action "Installing and Configuring Redis"
 sudo apt-get install -y redis-server
